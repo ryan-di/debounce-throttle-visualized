@@ -20,11 +20,16 @@ label {
 
 select {
 	font-size: 1.5rem;
-	padding: 0.5rem 0.1rem;
+	padding: 0.5rem;
 	border: 2px solid white;
 	border-radius: 0.5rem;
 	background-color: #444444;
 	color: white;
+	text-align: center;
+}
+
+option {
+	text-align: center;
 }
 
 select:focus {

@@ -10,9 +10,11 @@ const EventTypes = {
 };
 
 const HandlerTypes = {
-	throttle: 'throttle',
 	debounce: 'debounce',
+	throttle: 'throttle',
 };
+
+let HANDLER = () => {};
 
 function useInterval(callback: () => void, delay: number) {
 	const savedCallback = useRef<() => void>();
@@ -38,7 +40,7 @@ function App() {
 	const [rawOn, setRawOn] = useState(false);
 	const [decoOn, setDecoOn] = useState(false);
 	const [active, setActive] = useState(false);
-	const [decoHandlerType, setDecoHandlerType] = useState(HandlerTypes.throttle);
+	const [decoHandlerType, setDecoHandlerType] = useState(HandlerTypes.debounce);
 
 	const render = () => {
 		const rawEvents = document.getElementById('raw-events') as HTMLDivElement;
@@ -61,6 +63,10 @@ function App() {
 
 	// set up event handlers for trigger area
 	useEffect(() => {
+		const trigger = document.getElementById('trigger');
+		trigger?.removeEventListener('click', HANDLER);
+		trigger?.removeEventListener('mousemove', HANDLER);
+
 		const rawEventHandler = () => {
 			setRawOn(true);
 		};
@@ -90,7 +96,8 @@ function App() {
 			decoHandler();
 		};
 
-		const trigger = document.getElementById('trigger');
+		HANDLER = handler;
+
 		trigger?.addEventListener('click', handler);
 		trigger?.addEventListener('mousemove', handler);
 	}, [decoHandlerType, duration]);
