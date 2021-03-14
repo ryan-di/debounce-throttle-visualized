@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	useEffect(() => {}, []);
+
+	return (
+		<div className="App">
+			<label htmlFor="event-type">Currently Selected: </label>
+			<select name="event-type" id="event-type">
+				<option value="throttle">Throttle</option>
+				<option value="debounce">Debounce</option>
+			</select>
+
+			{/* control panel */}
+			<br />
+			<div className="control trigger-area">Trigger Area</div>
+			<div className="control reset">Reset</div>
+
+			<div className="stage">
+				<h3>Raw Events Over Time</h3>
+				<div id="raw-events" className="events"></div>
+				<h3>Throttled Event</h3>
+				<div id="decorated-event" className="events"></div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
