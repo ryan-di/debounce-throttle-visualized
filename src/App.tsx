@@ -168,6 +168,9 @@ function App() {
 			<div id="reset" className="control reset" onClick={reset}>
 				Reset
 			</div>
+			<div>
+				Move around in (or click) the 'Trigger' area to simulate events. <br />
+			</div>
 
 			<div className="stage">
 				<h3>Raw Events - {duration}ms</h3>
