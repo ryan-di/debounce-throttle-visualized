@@ -5,8 +5,8 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: #444444;
-	color: white;
+	background: #ffffff;
+	color: black;
 	min-width: 800px;
 }
 
@@ -22,10 +22,9 @@ label {
 select {
 	font-size: 1.5rem;
 	padding: 0.5rem;
-	border: 2px solid white;
+	border: 2px solid black;
 	border-radius: 0.5rem;
-	background-color: #444444;
-	color: white;
+	color: black;
 	text-align: center;
 }
 
@@ -46,30 +45,23 @@ select:focus {
 	text-align: center;
 	cursor: pointer;
 	font-size: 1.5rem;
-	border: 2px solid white;
+	border: 2px solid black;
 	border-radius: 0.5rem;
 	transition: all 0.1s ease-out;
 	margin-top: 2rem;
-}
-
-.trigger-area {
-	background-color: transparent;
-	-webkit-user-select: none; /* Chrome  / Safari */
-	-moz-user-select: none; /* Firefox all */
-	-ms-user-select: none; /* IE 10+ */
-	user-select: none; /* Likely future */
+	user-select: none;
 }
 
 .trigger-area:hover {
-	border: 2px solid goldenrod;
+	border: 2px solid rgb(97, 255, 97);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-weight: bold;
 }
 .trigger-area.active {
-	background: goldenrod;
+	background: rgb(97, 255, 97);
 	color: black;
 	font-weight: bold;
-	border-color: goldenrod;
+	border-color: rgb(97, 255, 97);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -80,10 +72,11 @@ select:focus {
 }
 
 .stage {
+	border-radius: 0.5rem;
 	text-align: left;
 	margin-top: 1rem;
-	background: rgba(0, 0, 0, 0.2);
-	height: 165px;
+	background: rgba(0, 0, 0, 0.3);
+	height: 170px;
 	max-width: 800px;
 	margin: 2rem auto;
 }
@@ -113,5 +106,5 @@ select:focus {
 }
 
 .events span.color {
-	background-color: goldenrod;
+	background-color: rgb(97, 255, 97);
 }
