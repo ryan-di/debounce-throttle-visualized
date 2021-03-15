@@ -1,5 +1,5 @@
 body {
-	margin: 3rem;
+	margin: 2rem;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif;
@@ -7,6 +7,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background: #444444;
 	color: white;
+	min-width: 800px;
 }
 
 code {
@@ -48,6 +49,7 @@ select:focus {
 	border: 2px solid white;
 	border-radius: 0.5rem;
 	transition: all 0.1s ease-out;
+	margin-top: 2rem;
 }
 
 .trigger-area {
@@ -82,6 +84,8 @@ select:focus {
 	margin-top: 1rem;
 	background: rgba(0, 0, 0, 0.2);
 	height: 165px;
+	max-width: 800px;
+	margin: 2rem auto;
 }
 
 .stage h3 {

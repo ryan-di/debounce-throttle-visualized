@@ -3,15 +3,15 @@ import './App.css';
 import * as _ from 'lodash';
 import { throttle } from 'lodash';
 
-const TotalTicks = 80;
+const TotalTicks = 75;
 const EventTypes = {
 	raw: 'raw',
 	deco: 'deco',
 };
 
 const HandlerTypes = {
-	debounce: 'debounce',
-	throttle: 'throttle',
+	debounced: 'debounced',
+	throttled: 'throttled',
 };
 
 let HANDLER = () => {};
@@ -40,7 +40,9 @@ function App() {
 	const [rawOn, setRawOn] = useState(false);
 	const [decoOn, setDecoOn] = useState(false);
 	const [active, setActive] = useState(false);
-	const [decoHandlerType, setDecoHandlerType] = useState(HandlerTypes.debounce);
+	const [decoHandlerType, setDecoHandlerType] = useState(
+		HandlerTypes.debounced
+	);
 
 	const render = () => {
 		const rawEvents = document.getElementById('raw-events') as HTMLDivElement;
@@ -64,6 +66,7 @@ function App() {
 	// set up event handlers for trigger area
 	useEffect(() => {
 		const trigger = document.getElementById('trigger');
+		// remove previous (possibly outdated) handlers
 		trigger?.removeEventListener('click', HANDLER);
 		trigger?.removeEventListener('mousemove', HANDLER);
 
@@ -71,16 +74,16 @@ function App() {
 			setRawOn(true);
 		};
 
-		let decoHandler = () => {};
+		let decoEventHandler = () => {};
 
 		switch (decoHandlerType) {
-			case HandlerTypes.debounce:
-				decoHandler = _.debounce(() => {
+			case HandlerTypes.debounced:
+				decoEventHandler = _.debounce(() => {
 					setDecoOn(true);
 				}, duration * 4);
 				break;
-			case HandlerTypes.throttle:
-				decoHandler = throttle(
+			case HandlerTypes.throttled:
+				decoEventHandler = throttle(
 					() => {
 						setDecoOn(true);
 					},
@@ -93,7 +96,7 @@ function App() {
 		const handler = () => {
 			setActive(true);
 			rawEventHandler();
-			decoHandler();
+			decoEventHandler();
 		};
 
 		HANDLER = handler;
@@ -167,9 +170,11 @@ function App() {
 			</div>
 
 			<div className="stage">
-				<h3>Raw Events Over Time</h3>
+				<h3>Raw Events - {duration}ms</h3>
 				<div id="raw-events" className="events"></div>
-				<h3>Throttled Event</h3>
+				<h3>
+					{_.capitalize(decoHandlerType)} Events - {duration * 4}ms
+				</h3>
 				<div id="decorated-events" className="events"></div>
 			</div>
 		</div>
